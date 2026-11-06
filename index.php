@@ -8,6 +8,7 @@
     /** @var stdClass $_ */
 ?>
 <main class="page-accueil">
+	test
 	<article class="amorce">
 		<h1><?= $_->amorceTitre ?></h1>
 		<h2><?= $_->amorceSousTitre ?></h2>

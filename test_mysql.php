@@ -24,9 +24,9 @@ $resultat = $cnx->query($requeteProduits);
  <h2>Les 10 premiers produits (nom et prix)</h2>
  <ul>
     <?php
-        while($unProduit = $resultat->fetch_assoc()):
+        while($unProduit = $resultat->fetch_object()):
     ?>
-    <li><?= $unProduit['nom']; ?>(<?= $unProduit['prix'] ?>)</li>
+    <li><?= $unProduit->nom; ?>(<?= $unProduit->prix; ?>)</li>
     <?php
         endwhile;
     ?>

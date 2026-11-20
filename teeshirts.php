@@ -14,10 +14,14 @@ include('parties-communes/entete.php');
 
 // Gerer l'interactivite de filtre et de tri.
 // a) Capturer la saisie de l'utilisateur
-$tri = (isset($_GET['tri'])) ? $_GET['tri'] : 'aleatoire';
+$tri = $_GET['tri'] ?? 'aleatoire';
+$filtre = (isset($_GET['filtre'])) ? $_GET['filtre'] : 'tous';
 
 // b) Passer la valeur de tri a la fonction
-[$themes, $produits] = obtenirCatalogue($page, $langue, $tri);
+$themes = obtenirThemes();
+// print_r($themes);
+$produits = obtenirProduits($page, $tri, $filtre);
+
 
 
 
@@ -34,8 +38,8 @@ $formatteurMontants = new NumberFormatter($langue, NumberFormatter::CURRENCY);
 				<select name="filtre" id="filtre">
 					<option value="tous">Tous les produits</option>
 					<!--Gabarit option theme-->
-					<?php foreach ($themes as $codeTheme => $nomTheme) : ?>
-						<option value="<?= $codeTheme; ?>"><?= $nomTheme; ?></option>
+					<?php foreach ($themes as $unTheme) : ?>
+						<option value="<?= $unTheme->id; ?>"><?= $unTheme->nom; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>
